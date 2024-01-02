@@ -1,0 +1,13 @@
+{
+    "ros": [
+        "ros-noetic-desktop-full"
+    ],
+    "python": [
+        "customtkinter",
+        "requests",
+        "pillow"
+    ],
+    "system": [
+        "git"
+    ]
+}

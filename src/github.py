@@ -3,18 +3,12 @@ from requests.auth import HTTPBasicAuth
 import subprocess
 
 class Github():
-    def __init__(self, username, token, selected_repos):
+    def __init__(self, username = "", token = "", selected_repos = []):
         self.username = username
         self.token = token
         self.selected_repos = selected_repos
         self.repo_list = ['hera', 'hera_face', 'track_flow', 'detector_2d', 'hera_objects', 'hera_nav', 'hera_hw', 'hera_control', 'hera_speech']
-    
-    def __init__(self):
-        self.username = ""
-        self.token = ""
-        self.selected_repos = []
-        self.repo_list = ['hera', 'hera_face', 'track_flow', 'detector_2d', 'hera_objects', 'hera_nav', 'hera_hw', 'hera_control', 'hera_speech']
-    
+        
     def verify_credentials(self):
         url = "https://api.github.com/user"
         response = requests.get(url, auth=HTTPBasicAuth(self.username, self.token))

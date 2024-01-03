@@ -14,17 +14,9 @@ class DeletionError(Exception):
     pass
 
 class Workspace():
-    def __init__(self, path):
-        self.set_path(path)
-    
-    def set_path(self, path):
-        expanded_path = os.path.expanduser(path)
-        if not os.path.isabs(expanded_path):
-            raise PathError("Path must be an absolute path")
-        if not os.path.isdir(os.path.dirname(expanded_path)):
-            raise PathError("Parent directory of the path does not exist")
-        self.path = expanded_path
-    
+    def __init__(self, path = "~/Workspace/hera_ws/"):
+        self.path = os.path.expanduser(path)
+        
     def create_workspace(self):
         if os.path.exists(self.path):
             print(f"Workspace already exists at {self.path}")

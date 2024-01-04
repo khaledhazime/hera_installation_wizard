@@ -1,22 +1,29 @@
 import os
 import shutil
 
+
 class PathError(Exception):
     """Exception raised when the path is invalid."""
+
     pass
+
 
 class CreationError(Exception):
     """Exception raised when creating the workspace fails."""
+
     pass
+
 
 class DeletionError(Exception):
     """Exception raised when deleting the workspace fails."""
+
     pass
 
-class Workspace():
-    def __init__(self, path = "~/Workspace/hera_ws/"):
+
+class Workspace:
+    def __init__(self, path="~/Workspace/hera_ws/"):
         self.path = os.path.expanduser(path)
-        
+
     def create_workspace(self):
         if os.path.exists(self.path):
             print(f"Workspace already exists at {self.path}")

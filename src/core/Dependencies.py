@@ -1,9 +1,12 @@
 import json
 import subprocess
 
+
 class DependencyManagerError(Exception):
     """Exception raised for errors in dependency management or installation."""
+
     pass
+
 
 class DependencyManager:
     def __init__(self, dependencies_file="assets/dependencies.json"):
@@ -12,7 +15,7 @@ class DependencyManager:
 
     def load_dependencies(self):
         try:
-            with open(self.dependencies_file, 'r') as file:
+            with open(self.dependencies_file, "r") as file:
                 self.dependencies = json.load(file)
         except FileNotFoundError:
             self.dependencies = {"ros": [], "python": [], "system": []}
@@ -21,7 +24,7 @@ class DependencyManager:
             raise DependencyManagerError("Error parsing dependencies file.")
 
     def save_dependencies(self):
-        with open(self.dependencies_file, 'w') as file:
+        with open(self.dependencies_file, "w") as file:
             json.dump(self.dependencies, file, indent=4)
 
     def add_dependency(self, category, dependency):
@@ -45,7 +48,9 @@ class DependencyManager:
             try:
                 print(f"Installing {category} dependency: {dep}...")
                 if category == "ros" or category == "system":
-                    subprocess.run(["sudo", "apt-get", "install", "-y", dep], check=True)
+                    subprocess.run(
+                        ["sudo", "apt-get", "install", "-y", dep], check=True
+                    )
                 elif category == "python":
                     subprocess.run(["pip", "install", dep], check=True)
                 print(f"Successfully installed {dep}")

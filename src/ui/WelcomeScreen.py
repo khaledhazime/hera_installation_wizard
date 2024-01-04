@@ -16,7 +16,7 @@ class WelcomeScreen(ctk.CTkFrame):
             text_color="black",
             font=("Futura", 20, "bold"),
             wraplength=400,
-        ) 
+        )
         self.title_label.pack(padx=10, pady=10, fill="both", expand=True)
 
         self.bind("<Configure>", self.on_resize)

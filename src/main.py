@@ -1,14 +1,14 @@
-import ui as UI
-import github as Github
-import workspace as Workspace
-import dependencies as Dependencies
+import ui.main as UI
+import core.Github as Github
+import core.Workspace as Workspace
+import core.Dependencies as Dependencies
 
 class App():
     def __init__(self):
         self.ui = UI.UI()
         self.github = Github.Github()
         self.workspace = Workspace.Workspace()
-        self.dependencies = Dependencies.Dependencies()
+        self.dependencies = Dependencies.DependencyManager()
         self.ui.run()
         
 

@@ -8,16 +8,31 @@ class WelcomeScreen(ctk.CTkFrame):
         self.pack(fill="both", pady=0, padx=0, expand=True)
         self.configure(fg_color=Colors().palette["main_background"])
 
-        self.welcome_text = "Welcome to the HERA Wizard!\nThis wizard will guide you through the installation of the HERA sofBGÓDREFtware.\nPlease follow the steps in the sidebar to complete the installation."
+        self.welcome_text = "Welcome to the HERA Wizard! \n"\
+                            "This user-friendly setup will guide you through the installation or update of HERA packages, "\
+                            "ensuring your computer is equipped with the latest packages.\n"\
+                            "Simply enter your GitHub credentials to access and customize your package selection.\n"\
+        
+        self.next_label = "Please, click \"Next\" to continue."
 
         self.title_label = ctk.CTkLabel(
             self,
             text=self.welcome_text,
             text_color="black",
-            font=("Futura", 20, "bold"),
+            font=("Futura", 15),
             wraplength=400,
         )
-        self.title_label.pack(padx=10, pady=10, fill="both", expand=True)
+        self.title_label.pack(padx=10, pady=10, expand=False, side="top", anchor="w")
+        
+        self.next_label = ctk.CTkLabel(
+            self,
+            text=self.next_label,
+            text_color="black",
+            font=("Futura", 15),
+            wraplength=400,
+        )
+        self.next_label.pack(padx=10, pady=10, expand=False, side="bottom")
+        
 
         self.bind("<Configure>", self.on_resize)
 

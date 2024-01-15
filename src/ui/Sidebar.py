@@ -1,74 +1,63 @@
 import customtkinter as ctk
 from PIL import Image, ImageTk
-from tkinter import Tk
 from ui.Colors import Colors
-
 
 class Sidebar(ctk.CTkFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs, corner_radius=0)
         self.colors = Colors()
-        self.pack(
-            side="left", fill="y", padx=0, pady=0
-        )  # ipadx sets the internal padding, adjusting the width
+        self.pack(side="left", fill="y", padx=0, pady=0)
 
         self.configure(fg_color=self.colors.palette["sidebar_background"])
-        self.pack_propagate(0)
+        # self.pack_propagate(0)  # Prevents the frame from shrinking to the size of its contents
 
-        self.load_resized_image("assets/hera.png", 300, 300)
+        # Load and display the image
+        self.load_resized_image("assets/hera.png", 200, 200)
 
         self.buttons = []
         self._create_buttons()
 
     def load_resized_image(self, image_path, width, height):
         image = Image.open(image_path)
-        aspect_ratio = image.width / image.height
-        new_width = min(width, int(height * aspect_ratio))
-        new_height = min(height, int(width / aspect_ratio))
-        image = image.resize((new_width, new_height), Image.ANTIALIAS)
+        image.thumbnail((width, height), Image.ANTIALIAS)  # Better thumbnail scaling
         self.image = ImageTk.PhotoImage(image)
-        image_label = ctk.CTkLabel(
-            self, image=self.image, width=new_width, height=new_height, text=""
-        )
-        image_label.pack(pady=10)
+        image_label = ctk.CTkLabel(self, image=self.image)
+        image_label.pack(pady=20)  # Increased padding for better spacing
 
     def add_button(self, text):
         button = ctk.CTkButton(
             self,
             text=text,
-            state="disabled",
-            fg_color="gray",
-            hover_color="gray",
             text_color_disabled="black",
-            width=180,
-            height=30,
+            width=200,  # Increased width for better fit
+            height=40,  # Increased height for better clickability
             font=("Futura", 12, "bold"),
+            corner_radius=5,  # Added slight corner radius for a modern look
+            anchor="w",
         )
-        button.pack(pady=1)
+        button.pack(pady=5)  # Reduced padding for tighter layout
         self.buttons.append(button)
         return button
 
     def _create_buttons(self):
-        self.add_button("Welcome")
-        self.add_button("Github Credentials")
-        self.add_button("Workspace setup")
-        self.add_button("Dependencies")
-        self.add_button("Installation")
-        self.add_button("Exit")
+        button_titles = ["Welcome", "Github Credentials", "Workspace setup", "Dependencies", "Installation", "Exit"]
+        for title in button_titles:
+            self.add_button(title)
 
     def set_button_pressed(self, index):
         for idx, button in enumerate(self.buttons):
             if idx == index:
                 button.configure(
-                    fg_color=self.colors.palette["active_button_color"],
-                    hover_color=self.colors.palette["active_button_color"],
+                    fg_color=self.colors.palette["main_background"],
                     text_color_disabled="black",
                     font=("Futura", 12, "bold"),
+                    state="disabled",
                 )
             else:
                 button.configure(
-                    fg_color=self.colors.palette["inactive_button_color"],
-                    hover_color=self.colors.palette["inactive_button_color"],
+                    fg_color=self.colors.palette["sidebar_background"],
+                    hover_color=self.colors.palette["inactive_button_color"],  # Adjusted for clarity
                     text_color_disabled="black",
                     font=("Futura", 12, "bold"),
+                    state="disabled",
                 )

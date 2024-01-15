@@ -7,6 +7,9 @@ class GitHubCredentialsScreen(ctk.CTkFrame):
         self.pack(fill="both", pady=0, padx=0, expand=True)
         self.configure(fg_color=Colors().palette["main_background"])
 
+        self.username = None
+        self.token = None
+        
         # Explanatory Text
         self.explanation_text = ("Enter your GitHub credentials\n"
                                 "Please provide your GitHub username and a personal access token to proceed.\n\n "
@@ -55,3 +58,4 @@ class GitHubCredentialsScreen(ctk.CTkFrame):
     def open_token_help(self):
         import webbrowser
         webbrowser.open("https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token")
+    

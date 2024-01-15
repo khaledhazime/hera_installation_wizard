@@ -29,8 +29,8 @@ class Footer(ctk.CTkFrame):
             width=120,
             height=30,
             text_color="black",
-            # Replace with the actual screen you want to switch to
-            command=lambda: ui_reference.change_screen("welcome")
+            
+            command=lambda: ui_reference.go_back()
         )
         self.back_button.pack(side="left", fill="x", padx=10, pady=10)
 
@@ -44,10 +44,11 @@ class Footer(ctk.CTkFrame):
             height=30,
             text_color="black",
             # Replace with the actual screen you want to switch to
-            command=lambda: ui_reference.change_screen("github")
+            command=lambda: ui_reference.go_next()
         )
         self.next_button.pack(side="left", fill="x", padx=10, pady=10)
 
     def on_cancel(self):
-        # Define what should happen when Cancel is pressed
+        # Close the application
+        self.master.destroy()
         pass

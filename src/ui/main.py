@@ -4,7 +4,7 @@ from ui.Titlebar import Titlebar
 from ui.Footer import Footer
 from ui.WelcomeScreen import WelcomeScreen
 from ui.GithubCredentialsScreen import GitHubCredentialsScreen
-
+from ui.WorkspaceSetup import WorkspaceSetup
 class UI(ctk.CTk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -19,12 +19,14 @@ class UI(ctk.CTk):
         self.screens = {
             "welcome": lambda: WelcomeScreen(self),
             "github": lambda: GitHubCredentialsScreen(self),
+            "workspace": lambda: WorkspaceSetup(self),
         }
         self.screen_to_button_index = {
             "welcome": 0,
             "github": 1,
-            # Add other screens and their corresponding button indexes here
+            "workspace": 2,
         }
+        self.screen_order = ["welcome", "github", "workspace"]
         self.created_screens = {}
         self.current_screen_name = None  # Variable to store the current screen name
 
@@ -39,7 +41,7 @@ class UI(ctk.CTk):
         if screen_name not in self.created_screens:
             self.created_screens[screen_name] = self.screens[screen_name]()
 
-        self.current_screen_name = screen_name  # Update current screen name
+        self.current_screen_name = screen_name
         self.current_screen = self.created_screens[screen_name]
         self.current_screen.pack(fill="both", expand=True)
 
@@ -47,6 +49,20 @@ class UI(ctk.CTk):
         button_index = self.screen_to_button_index.get(screen_name, -1)
         if button_index != -1:
             self.sidebar.set_button_pressed(button_index)
+    
+    def go_next(self):
+        if self.current_screen_name:
+            current_index = self.screen_order.index(self.current_screen_name)
+            if current_index < len(self.screen_order) - 1:
+                next_screen = self.screen_order[current_index + 1]
+                self.change_screen(next_screen)
+    
+    def go_back(self):
+        if self.current_screen_name:
+            current_index = self.screen_order.index(self.current_screen_name)
+            if current_index > 0:
+                previous_screen = self.screen_order[current_index - 1]
+                self.change_screen(previous_screen)
 
     def run(self):
         self.mainloop()

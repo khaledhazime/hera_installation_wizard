@@ -1,0 +1,110 @@
+[
+    {
+        "name": "hera_bringup",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "hera_description",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "hera_hw",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "hera_nav",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "hera_simulation",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "hera_control",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "hera_objects",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "hera_speech",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "hera_face",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "track_flow",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "detector_2d",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    },
+    {
+        "name": "hera_tasks",
+        "organization": "robofeiathome",
+        "branches": [
+            "main",
+            "dev"
+        ],
+        "selected_branch": "main"
+    }
+]

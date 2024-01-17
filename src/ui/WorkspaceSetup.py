@@ -14,7 +14,7 @@ class WorkspaceSetup(ctk.CTkFrame):
 
         self.workspace_path = "~/Workspace/hera_ws"
         self.selected_packages = []
-        
+
         self.folder_setup()
         self.packages_selection()
 
@@ -68,7 +68,7 @@ class WorkspaceSetup(ctk.CTkFrame):
         )
         self.explanation_text.pack(padx=10, pady=10, expand=False, side="top")
         self.packages_frame = ctk.CTkFrame(self)
-        
+
         self.packages_frame.pack(padx=10, pady=10, fill="both", expand=True)
         self.packages_frame.configure(fg_color=Colors().palette["main_background"])
 
@@ -78,11 +78,11 @@ class WorkspaceSetup(ctk.CTkFrame):
         self.package_checkboxes = {}
         for i, package in enumerate(self.package_list):
             self.package_checkboxes[package] = ctk.CTkCheckBox(
-                self.packages_frame, 
+                self.packages_frame,
                 text=package,
                 text_color="black",
-                font=("Futura", 12, 'bold'),
-                command=lambda p=package: self.handle_checkbox(p)
+                font=("Futura", 12, "bold"),
+                command=lambda p=package: self.handle_checkbox(p),
             )
             row = i // num_columns  # Calculate row number (0-indexed)
             column = i % num_columns  # Calculate column number (0-indexed)
@@ -95,9 +95,10 @@ class WorkspaceSetup(ctk.CTkFrame):
             else:
                 padx = (5, 5)
 
-            self.package_checkboxes[package].grid(row=row, column=column, sticky="w", padx=padx, pady=8)
+            self.package_checkboxes[package].grid(
+                row=row, column=column, sticky="w", padx=padx, pady=8
+            )
 
-        
         self.select_all_button = ctk.CTkButton(
             self,
             text="Select All",
@@ -107,7 +108,7 @@ class WorkspaceSetup(ctk.CTkFrame):
             width=120,
             height=30,
             text_color="black",
-            command=self.select_all_handler
+            command=self.select_all_handler,
         )
         self.select_all_button.pack(side="left", fill="x", padx=10, pady=10)
         self.customize_button = ctk.CTkButton(
@@ -119,15 +120,11 @@ class WorkspaceSetup(ctk.CTkFrame):
             width=120,
             height=30,
             text_color="black",
-            command=lambda p=self.selected_packages: self.package_customization.show()
+            command=lambda p=self.selected_packages: self.package_customization.show(),
         )
         self.customize_button.pack(side="left", fill="x", padx=10, pady=10)
-        
-        self.dropdown_frame = ctk.CTkFrame(
-            self,
-            width=120,
-            height=30
-        )
+
+        self.dropdown_frame = ctk.CTkFrame(self, width=120, height=30)
         self.dropdown_frame.pack(side="left", padx=10, pady=10)
         options = ["Sim", "Physical", "Both"]
         self.dropdown_menu = ctk.CTkOptionMenu(
@@ -139,7 +136,6 @@ class WorkspaceSetup(ctk.CTkFrame):
             bg_color=Colors().palette["main_background"],
             dropdown_fg_color=Colors().palette["main_background"],
             fg_color=Colors().palette["active_button_color"],
-            
         )
         self.dropdown_menu.pack(expand=True, fill="both")
 
@@ -169,9 +165,13 @@ class WorkspaceSetup(ctk.CTkFrame):
                 self.selected_packages.remove(package)
 
         # Check if all checkboxes are selected
-        self.all_selected = all(checkbox.get() == 1 for checkbox in self.package_checkboxes.values())
-        self.select_all_button.configure(text="Unselect All" if self.all_selected else "Select All")
-        print('Selected packages:' + str(self.selected_packages))
+        self.all_selected = all(
+            checkbox.get() == 1 for checkbox in self.package_checkboxes.values()
+        )
+        self.select_all_button.configure(
+            text="Unselect All" if self.all_selected else "Select All"
+        )
+        print("Selected packages:" + str(self.selected_packages))
 
     def get_workspace_path(self):
         return self.workspace_path
